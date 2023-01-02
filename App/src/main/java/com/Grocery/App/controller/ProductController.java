@@ -3,7 +3,6 @@ package com.Grocery.App.controller;
 import com.Grocery.App.model.Product;
 import com.Grocery.App.model.User;
 import com.Grocery.App.repository.ProductRepository;
-import com.Grocery.App.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,23 +12,22 @@ import java.util.List;
 @Controller
 @RestController
 @CrossOrigin("*")
-public class UserController {
+public class ProductController {
   @Autowired
-  private UserRepository userRepo;
   private ProductRepository productRepo;
 
 
-  //Add user to the database
-
-  @PostMapping(path = "createUser")
-  public User createUser(@RequestBody User user){
-      userRepo.save(user);
-      return user;
+  //Add product to the database
+  
+  @PostMapping(path = "addProduct")
+  public Product createUser(@RequestBody Product prod){
+	  productRepo.save(prod);
+      return prod;
   }
-
-  @GetMapping(path = "user")
-  public List<User> displayUser(){
-    return userRepo.findAll();
+  
+  @GetMapping(path = "products")
+  public List<Product> displayProducts(){
+    return productRepo.findAll();
   }
   
 
